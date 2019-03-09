@@ -2,31 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RepeatingBG : MonoBehaviour
+public class ReapeatingStaticBG : MonoBehaviour
 {
     public GameObject player;
 
-    public float speed;
-
     public float startX;
     public float endX;
-    private float playerPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
-
-        playerPosition = player.transform.position.x;
-
-        startX = playerPosition + 16;
-        endX = playerPosition - 16;
+        endX = player.transform.position.x + 16;
+        startX = player.transform.position.x;
 
         if (transform.position.x <= endX)
         {
