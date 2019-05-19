@@ -119,9 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb70ca73ded6df44489c5585b49a9e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 2.4
   distance: 0
   gameOver: {fileID: 0}
   player: {fileID: 0}
+  scoreManager: {fileID: 0}
   speedUpDelay: 0
   speedUpEffect: 0

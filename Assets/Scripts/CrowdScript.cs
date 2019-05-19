@@ -10,8 +10,9 @@ public class CrowdScript : MonoBehaviour
     public GameObject player;
     public GameObject scoreManager;
 
-    public int speedUpDelay;
+    /*public int speedUpDelay;
     public float speedUpEffect;
+    */
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -30,8 +31,9 @@ public class CrowdScript : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        speedUpDelay = 0;
+        /*speedUpDelay = 0;
         speedUpEffect = 0f;
+        */
     }
 
     // Update is called once per frame
@@ -39,7 +41,7 @@ public class CrowdScript : MonoBehaviour
     {
         distance = player.transform.position.x - transform.position.x;
         transform.Translate(Vector2.right * speed * Time.deltaTime);
-        if (speedUpDelay > 0)
+        /*if (speedUpDelay > 0)
         {
             speedUpDelay--;
             if (speedUpDelay == 0)
@@ -47,5 +49,22 @@ public class CrowdScript : MonoBehaviour
                 speed += speedUpEffect;
             }
         }
+        */
+    }
+
+    public void SpeedUp(float speedUpEffect, int speedUpDelay)
+    {
+        if (speedUpDelay >= 0)
+        {
+            StartCoroutine(Delay(speedUpEffect, speedUpDelay));
+        }
+    }
+
+    IEnumerator Delay(float speedUpEffect, int speedUpDelay)
+    {
+        float seconds = speedUpDelay / (1 / Time.deltaTime);
+        yield return new WaitForSeconds(seconds);
+        speed += speedUpEffect;
+        Debug.Log("Speed Up Completed");
     }
 }

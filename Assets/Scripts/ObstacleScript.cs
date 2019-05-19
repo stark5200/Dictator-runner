@@ -12,8 +12,10 @@ public class ObstacleScript : MonoBehaviour
     [SerializeField]
     private float lifeTime = 4f;
 
-    public float slowDownEffect = 0.1f;
-    public int slowDownTime = 50;
+    [SerializeField]
+    float slowDownEffect = 0.1f;
+    [SerializeField]
+    int slowDownTime = 50;
 
     public GameObject effect;
 
@@ -33,11 +35,14 @@ public class ObstacleScript : MonoBehaviour
             Instantiate(explosionSound, transform.position, Quaternion.identity);
             player = other.GetComponent<PlayerController>();
             shake.camShake(0);
-            Destroy(gameObject);
 
             //player slows down
-            player.slowDownEffect = slowDownEffect;
-            player.slowDownTime += slowDownTime; 
+            //player.slowDownEffect = slowDownEffect;
+            //player.slowDownTime += slowDownTime; 
+            Debug.Log(string.Format("Slow Down Time {0}, Slow Down Effect {1}", slowDownTime, slowDownEffect));
+            player.SlowDown(slowDownEffect, slowDownTime);
+
+            Destroy(gameObject);
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 
 public class PlayerController : MonoBehaviour {
 
@@ -14,9 +15,10 @@ public class PlayerController : MonoBehaviour {
     public float speed = 3f;
     public float crowdDist = 0f;
     public float startingSpeed;
+    public float maxSpeed = 0f;
 
-    public int slowDownTime = 0;
-    public float slowDownEffect = 0f;
+    //public int slowDownTime = 0;
+    //public float slowDownEffect = 0f;
 
     [SerializeField]
     private float yIncrement = 1.3f;
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour {
     void Start()
     {
         startingSpeed = speed;
+        maxSpeed = 2 * speed;
         shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
         crowd = GameObject.FindGameObjectWithTag("Crowd");
     }
@@ -81,17 +84,39 @@ public class PlayerController : MonoBehaviour {
             transform.position = Vector2.MoveTowards(transform.position, targetPos, moveTowardSpeed * Time.deltaTime);
         }
 
-        //apply slow down player from obstacleScript
-        if (slowDownTime > 0) {
-            speed -= slowDownEffect;
-            slowDownEffect = 0;
-            slowDownTime--;
-        } 
+        //apply slow down player from obstaclescript
+        //if (slowdowntime > 0)
+        //{
+        //    speed -= slowdowneffect;
+        //    slowdowneffect = 0;
+        //    slowdowntime--;
+        //}
 
-        if (slowDownTime == 0)
+        //if (slowdowntime == 0)
+        //{
+        //    slowdowneffect = 0f;
+        //    speed = startingspeed;
+        //}
+    }
+
+    public void SlowDown(float slowDownEffect, int slowDownTime)
+    {
+        if (slowDownTime >= 0)
         {
-            slowDownEffect = 0f;
-            speed = startingSpeed;
+            Debug.Log(string.Format("SlowDownStarted, speed = {0}", speed));
+            speed -= slowDownEffect;
+            Debug.Log(string.Format("speed = {0}", speed));
+            StartCoroutine(Delay(slowDownTime));
+            Debug.Log("SlowDownCompleted");
+
         }
+    }
+
+    IEnumerator Delay(int frames)
+    {
+        float seconds = frames / 30 ;
+        Debug.Log(string.Format("coroutine Started, seconds = {0}", seconds));
+        yield return new WaitForSeconds(seconds);
+        speed = startingSpeed;
     }
 }

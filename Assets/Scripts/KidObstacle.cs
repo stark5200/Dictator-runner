@@ -9,11 +9,14 @@ public class KidObstacle : MonoBehaviour
     [SerializeField]
     private float lifeTime = 4f;
 
-    public float speedUpEffect = 0.3f;
-    public int speedUpTime = 80;
-
-    public float crowdSpeedUpEffect = 0.03f;
-    public int crowdSpeedUpDelay = 100;
+    [SerializeField]
+    float speedUpEffect = 0.3f;
+    [SerializeField]
+    int speedUpTime = 80;
+    [SerializeField]
+    float crowdSpeedUpEffect = 0.08f;
+    [SerializeField]
+    int crowdSpeedUpDelay = 100;
 
     public CrowdScript crowd;
 
@@ -36,21 +39,10 @@ public class KidObstacle : MonoBehaviour
             shake.camShake(0);
 
             //crowd and player speed up 
-            player.slowDownEffect = -speedUpEffect;
-            player.slowDownTime += speedUpTime;
+            player.SlowDown(-speedUpEffect, speedUpTime);
 
             crowd = GameObject.FindGameObjectWithTag("Crowd").GetComponent<CrowdScript>();
-
-            Debug.Log("Speed = " + crowd.speed);
-            Debug.Log("SpeedUpEffect = " + crowd.speedUpEffect);
-            Debug.Log("SpeedUpDelay = " + crowd.speedUpDelay);
-
-            crowd.speedUpDelay = crowdSpeedUpDelay;
-            crowd.speedUpEffect = crowdSpeedUpEffect;
-
-            Debug.Log("Speed = " + crowd.speed);
-            Debug.Log("SpeedUpEffect = " + crowd.speedUpEffect);
-            Debug.Log("SpeedUpDelay = " + crowd.speedUpDelay);
+            crowd.SpeedUp(crowdSpeedUpEffect, crowdSpeedUpDelay);
 
             Destroy(gameObject);
         }
