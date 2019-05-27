@@ -22,6 +22,7 @@ public class CrowdScript : MonoBehaviour
             Debug.Log("Game Over");
             scoreManager = GameObject.FindGameObjectWithTag("Score Manager");
             scoreManager.GetComponent<ScoreManager>().scoreIsActive = false;
+
             Destroy(other);
             Destroy(gameObject);
         }

@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour {
             transform.position = Vector2.MoveTowards(transform.position, targetPos, moveTowardSpeed * Time.deltaTime);
         }
 
+
         //apply slow down player from obstaclescript
         //if (slowdowntime > 0)
         //{
@@ -118,5 +119,22 @@ public class PlayerController : MonoBehaviour {
         Debug.Log(string.Format("coroutine Started, seconds = {0}", seconds));
         yield return new WaitForSeconds(seconds);
         speed = startingSpeed;
+    }
+
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerData playerData = SaveSystem.LoadPlayer();
+
+        crowdDist = playerData.crowdDist;
+
+        Vector3 position;
+        position.x = playerData.position[0];
+        position.y = playerData.position[1];
+        position.z = playerData.position[2];
     }
 }
