@@ -572,7 +572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.33740222, y: 0, z: -9}
+  m_LocalPosition: {x: 0.3376982, y: 0, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1769629219}
@@ -851,6 +851,46 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7815970449204459181, guid: ac3548131e51f2b4b9a0e8142555cbd9,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815970449204459181, guid: ac3548131e51f2b4b9a0e8142555cbd9,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815970449204459181, guid: ac3548131e51f2b4b9a0e8142555cbd9,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815970449204459181, guid: ac3548131e51f2b4b9a0e8142555cbd9,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1979510470}
+    - target: {fileID: 7815970449204459181, guid: ac3548131e51f2b4b9a0e8142555cbd9,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815970449204459181, guid: ac3548131e51f2b4b9a0e8142555cbd9,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815970449204459181, guid: ac3548131e51f2b4b9a0e8142555cbd9,
+        type: 3}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815970449204459181, guid: ac3548131e51f2b4b9a0e8142555cbd9,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7815970447692504722, guid: ac3548131e51f2b4b9a0e8142555cbd9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ac3548131e51f2b4b9a0e8142555cbd9, type: 3}
@@ -1125,6 +1165,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055684946604291391, guid: 5b755c8222feca544b01db9a06518195,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 2d070c5fffddc93449a8cd035c745acb,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b755c8222feca544b01db9a06518195, type: 3}
 --- !u!1 &918294860
@@ -1973,7 +2019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765652769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33740222, y: 0, z: -10}
+  m_LocalPosition: {x: 0.3376982, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2143742495}
@@ -2126,6 +2172,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenuUI: {fileID: 49161190}
+--- !u!114 &1979510470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979510464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd1978439e6ccf44b5c3c549304eed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 2d070c5fffddc93449a8cd035c745acb, type: 2}
 --- !u!114 &2112119634 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1306780598, guid: 049539cfc8a0d0646abe19ca7c2befa1,
