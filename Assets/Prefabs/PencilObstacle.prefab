@@ -123,8 +123,8 @@ MonoBehaviour:
   damage: 1
   speed: 3
   lifeTime: 10
-  slowDownEffect: 0.1
-  slowDownTime: 50
+  slowDownEffect: 0.12
+  slowDownTime: 55
   effect: {fileID: 5986045252580876937, guid: 27f3d2bf22be7274fbb7f9ec3b93166b, type: 3}
   player: {fileID: 0}
   explosionSound: {fileID: 2714300257008525210, guid: f3c14aa232d934346b227ba2a7394932,

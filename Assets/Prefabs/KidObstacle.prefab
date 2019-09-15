@@ -135,9 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   lifeTime: 6
-  speedUpEffect: 0.3
-  speedUpTime: 80
-  crowdSpeedUpEffect: 0.04
+  speedUpEffect: 0.25
+  speedUpTime: 70
+  crowdSpeedUpEffect: 0.05
   crowdSpeedUpDelay: 100
   crowd: {fileID: 0}
   effect: {fileID: 5986045252580876937, guid: 27f3d2bf22be7274fbb7f9ec3b93166b, type: 3}

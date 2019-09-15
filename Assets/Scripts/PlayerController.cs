@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour {
     private Vector2 moveRight;
     private Rigidbody2D rb;
 
+    private Vector2 startTouchPosition, endTouchPosition;
+    private bool SwipeUp = false;
+    private bool SwipeDown = false;
+
     //public int health = 10;
     public float speed = 3f;
     public float crowdDist = 0f;
@@ -67,21 +71,30 @@ public class PlayerController : MonoBehaviour {
             Destroy(gameObject);
 
         }*/
-        if (Input.GetKeyDown(KeyCode.UpArrow) && ((transform.position.y + yIncrement) < maxHeight))
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            startTouchPosition = Input.GetTouch(0).position;
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
-            targetPos = new Vector2(transform.position.x, transform.position.y + yIncrement);
-            Instantiate(upEffect, transform.position, Quaternion.identity);
-            Instantiate(moveSound, transform.position, Quaternion.identity);
-            shake.camShake(1);
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, moveTowardSpeed * Time.deltaTime);
+            endTouchPosition = Input.GetTouch(0).position;
+
+            if (endTouchPosition.y > startTouchPosition.y)
+                SwipeUp = true;
+
+            if (endTouchPosition.y < startTouchPosition.y)
+                SwipeDown = true;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && ((transform.position.y - yIncrement) > minHeight))
+
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || SwipeUp) && ((transform.position.y + yIncrement) < maxHeight))
         {
-            targetPos = new Vector2(transform.position.x, transform.position.y - yIncrement);
-            Instantiate(downEffect, transform.position, Quaternion.identity);
-            Instantiate(moveSound, transform.position, Quaternion.identity);
-            shake.camShake(1);
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, moveTowardSpeed * Time.deltaTime);
+            //MovePLayerUp();
+            StartCoroutine(Move("Up"));
+        }
+        else if ((Input.GetKeyDown(KeyCode.DownArrow) || SwipeDown) && ((transform.position.y - yIncrement) > minHeight))
+        {
+            //MovePlayerDown();
+            StartCoroutine(Move("Down"));
         }
 
 
@@ -136,5 +149,51 @@ public class PlayerController : MonoBehaviour {
         position.x = playerData.position[0];
         position.y = playerData.position[1];
         position.z = playerData.position[2];
+    }
+
+    public void MovePLayerUp()
+    {
+        targetPos = new Vector2(transform.position.x, transform.position.y + yIncrement);
+        Instantiate(upEffect, transform.position, Quaternion.identity);
+        Instantiate(moveSound, transform.position, Quaternion.identity);
+        shake.camShake(1);
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, moveTowardSpeed * Time.deltaTime);
+        SwipeUp = false;
+    }
+
+    public void MovePlayerDown()
+    {
+        targetPos = new Vector2(transform.position.x, transform.position.y - yIncrement);
+        Instantiate(downEffect, transform.position, Quaternion.identity);
+        Instantiate(moveSound, transform.position, Quaternion.identity);
+        shake.camShake(1);
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, moveTowardSpeed * Time.deltaTime);
+        SwipeDown = false;
+    }
+
+    private IEnumerator Move(string whereToMove)
+    {
+        switch (whereToMove)
+        {
+            case "Up":
+                targetPos = new Vector2(transform.position.x, transform.position.y + yIncrement);
+                Instantiate(upEffect, transform.position, Quaternion.identity);
+                Instantiate(moveSound, transform.position, Quaternion.identity);
+                shake.camShake(1);
+                transform.position = Vector2.MoveTowards(transform.position, targetPos, moveTowardSpeed * Time.deltaTime);
+                SwipeUp = false;
+                yield return null;
+                break;
+
+            case "Down":
+                targetPos = new Vector2(transform.position.x, transform.position.y - yIncrement);
+                Instantiate(downEffect, transform.position, Quaternion.identity);
+                Instantiate(moveSound, transform.position, Quaternion.identity);
+                shake.camShake(1);
+                transform.position = Vector2.MoveTowards(transform.position, targetPos, moveTowardSpeed * Time.deltaTime);
+                SwipeDown = false;
+                yield return null;
+                break;
+        }
     }
 }
